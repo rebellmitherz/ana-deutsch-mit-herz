@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Für Ana ❤ Deutsch mit Herz – B2 bis C1</title>
+<meta name="description" content="Anas neue Lernseite: Deutsch B2–C1 mit Herz. Komplett neue Fragen, Wortschatz, Hör-Quiz, Grammatik, Karteikarten & Memory.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,600;1,800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<style>
+:root{--bg:#160818;--card:rgba(255,255,255,.06);--line:rgba(255,150,180,.25);--text:#fff5f7;--muted:#e8b7c8;--hot:#ff2e63;--coral:#ff7a59;--gold:#ffc65c;--green:#3ddc97;--radius:22px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Outfit',system-ui,sans-serif;color:var(--text);background:
+ radial-gradient(900px 500px at 85% -10%,rgba(255,46,99,.35),transparent 60%),
+ radial-gradient(800px 500px at -10% 20%,rgba(140,40,180,.30),transparent 55%),
+ radial-gradient(700px 400px at 50% 110%,rgba(255,122,89,.22),transparent 60%),var(--bg);overflow-x:hidden}
+.serif{font-family:'Playfair Display',serif}
+/* ===== 3D-Herz-Intro ===== */
+#intro{position:fixed;inset:0;z-index:999;background:radial-gradient(800px 500px at 50% 40%,#3d0a2e 0,#160818 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:opacity .8s,visibility .8s}
+#intro.gone{opacity:0;visibility:hidden;pointer-events:none}
+#heart3d{position:absolute;inset:0;width:100%;height:100%}
+#intro .txt{position:relative;z-index:2;pointer-events:none;padding:0 20px}
+#intro h1{font-family:'Playfair Display',serif;font-style:italic;font-weight:800;font-size:clamp(38px,9vw,74px);margin:0;background:linear-gradient(90deg,#fff,#ffb3c9,#ffc65c);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
+#intro p{color:var(--muted);font-size:clamp(16px,4vw,21px);margin:10px 0 0}
+#skipBtn{position:relative;z-index:3;margin-top:26px;background:linear-gradient(90deg,var(--hot),var(--coral));color:#fff;border:0;border-radius:999px;padding:14px 30px;font-weight:800;font-size:17px;cursor:pointer;box-shadow:0 10px 34px rgba(255,46,99,.55);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.cssheart{position:absolute;left:50%;top:42%;width:90px;height:90px;background:var(--hot);transform:translate(-50%,-50%) rotate(45deg) scale(.2);border-radius:14px;animation:cssfly 3.4s ease forwards;display:none}
+.cssheart:before,.cssheart:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;background:var(--hot)}
+.cssheart:before{left:-45px;top:0}.cssheart:after{top:-45px;left:0}
+@keyframes cssfly{to{transform:translate(-50%,-50%) rotate(45deg) scale(2.6);opacity:0}}
+.flyheart{position:fixed;z-index:998;font-size:26px;pointer-events:none;animation:flyup 2.6s ease-out forwards}
+@keyframes flyup{to{transform:translateY(-70vh) rotate(40deg) scale(1.5);opacity:0}}
+/* ===== Layout ===== */
+header{padding:38px 18px 6px;max-width:1000px;margin:0 auto;text-align:center}
+header h1{font-family:'Playfair Display',serif;font-style:italic;font-weight:900;font-size:clamp(36px,7vw,60px);margin:0;line-height:1.05}
+header h1 .grad{background:linear-gradient(92deg,#ff2e63,#ff7a59,#ffc65c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);margin:12px auto 4px;max-width:640px;line-height:1.55;font-size:17px}
+.badge{display:inline-block;background:rgba(255,46,99,.16);border:1px solid var(--line);padding:6px 14px;border-radius:999px;font-size:13px;color:#ffb3c9;margin-top:12px;font-weight:700}
+main{max-width:1000px;margin:0 auto;padding:14px 18px 56px}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin:18px 0}
+@media(max-width:700px){.hero{grid-template-columns:1fr}}
+.herocard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;backdrop-filter:blur(8px)}
+.herocard.big{display:flex;flex-direction:column;justify-content:center}
+.herocard.big h2{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(24px,4vw,34px);margin:0 0 8px}
+.herocard.art{display:flex;align-items:center;justify-content:center;font-size:110px;min-height:190px;background:linear-gradient(150deg,rgba(255,46,99,.35),rgba(255,197,92,.18) 55%,rgba(140,40,180,.30));animation:heartbeat 2.2s infinite}
+@keyframes heartbeat{0%,100%{transform:scale(1)}12%{transform:scale(1.03)}24%{transform:scale(1)}36%{transform:scale(1.03)}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;text-align:center;backdrop-filter:blur(8px)}
+.stat b{font-size:27px;display:block;background:linear-gradient(90deg,#fff,#ffb3c9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{color:var(--muted);font-size:13px}
+.ringwrap{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+.ring{transform:rotate(-90deg)}.ring .bgc{stroke:rgba(255,255,255,.12)}.ring .fgc{stroke:var(--hot);transition:stroke-dashoffset .5s}
+section{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin:14px 0;backdrop-filter:blur(8px)}
+h2{margin:0 0 8px;font-size:22px;font-family:'Playfair Display',serif}
+p{line-height:1.55}.muted{color:var(--muted)}
+button{background:linear-gradient(90deg,var(--hot),var(--coral));color:#fff;border:0;border-radius:999px;padding:11px 20px;font-weight:800;font-size:15px;cursor:pointer;margin:4px 4px 4px 0;box-shadow:0 6px 20px rgba(255,46,99,.35)}
+button.ghost{background:rgba(255,255,255,.08);color:var(--text);border:1px solid var(--line);box-shadow:none}
+button:disabled{opacity:.45;cursor:default}
+.opt{display:block;width:100%;text-align:left;background:rgba(255,255,255,.07);color:var(--text);border:1px solid var(--line);border-radius:14px;padding:13px 15px;margin:7px 0;font-weight:600;box-shadow:none}
+.opt.correct{border-color:var(--green);background:rgba(61,220,151,.16)}
+.opt.wrong{border-color:var(--hot);background:rgba(255,46,99,.18)}
+.feedback{font-weight:800;margin:10px 0;min-height:24px}
+.ok{color:var(--green)}.bad{color:#ff8fab}
+.qbig{font-size:24px;font-weight:800;margin:8px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}
+.flip{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:16px;padding:18px 10px;text-align:center;cursor:pointer;min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;gap:4px;transition:transform .25s}
+.flip:hover{transform:translateY(-3px)}
+.flip.ka{color:var(--gold)}
+.picgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.piccard{background:linear-gradient(160deg,rgba(255,46,99,.22),rgba(255,255,255,.05));border:1px solid var(--line);border-radius:16px;padding:14px 8px;text-align:center;cursor:pointer}
+.piccard .big{font-size:48px;line-height:1.15;display:block}
+.piccard .wd{font-weight:800;display:block;margin-top:6px}
+.piccard .ka2{color:var(--gold);font-weight:700;display:block;min-height:20px}
+.spk{background:rgba(255,255,255,.08);border:1px solid var(--line);color:var(--text);border-radius:999px;padding:5px 11px;font-size:14px;box-shadow:none}
+.lvlbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0;justify-content:center}
+.lvlbtn{background:rgba(255,255,255,.08);color:var(--text);border:1px solid var(--line);box-shadow:none}
+.lvlbtn.active{background:linear-gradient(90deg,var(--hot),var(--coral));color:#fff}
+.mem{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:8px}
+.memcard{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:14px;padding:14px 6px;text-align:center;cursor:pointer;min-height:66px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.memcard.open{border-color:var(--gold)}
+.memcard.done{border-color:var(--green);background:rgba(61,220,151,.15);cursor:default}
+table{width:100%;border-collapse:collapse}td,th{padding:9px 6px;border-bottom:1px solid rgba(255,255,255,.10);text-align:left;vertical-align:top}
+.bars{display:flex;gap:8px;align-items:flex-end;height:110px;margin-top:8px}
+.bar{flex:1;background:linear-gradient(180deg,var(--coral),var(--hot));border-radius:8px 8px 0 0;position:relative;min-height:6px}
+.bar i{position:absolute;top:-20px;left:0;right:0;text-align:center;font-style:normal;font-size:12px;color:var(--muted)}
+.barlbl{display:flex;gap:8px}.barlbl span{flex:1;text-align:center;font-size:12px;color:var(--muted)}
+.quest{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.10)}
+.pack{border-left:4px solid var(--hot);padding:4px 0 4px 12px;margin:10px 0}
+.lvltag{display:inline-block;background:rgba(255,46,99,.25);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700;color:#ffb3c9}
+footer{color:var(--muted);text-align:center;padding:20px;font-size:13px}
+a{color:var(--gold)}
+#replayHeart{position:fixed;right:16px;bottom:16px;z-index:50;border-radius:50%;width:58px;height:58px;font-size:26px;padding:0}
+</style>
+</head>
+<body>
+
+<!-- ===== INTRO: 3D-HERZ FÜR ANA ===== -->
+<div id="intro">
+  <canvas id="heart3d"></canvas>
+  <div class="cssheart" id="cssheart"></div>
+  <div class="txt">
+    <h1>🇬🇪 Für dich, Ana</h1>
+    <p>Ein Herz in Georgiens Farben fliegt zu dir … 💋</p>
+    <p style="font-size:clamp(15px,3.6vw,20px)">შენთვის, ანა — ისწავლე გერმანული გულით ❤</p>
+  </div>
+  <button id="skipBtn">Öffne dein Herz ❤</button>
+</div>
+
+<header>
+  <h1><span class="grad">Deutsch mit Herz</span><br>für Ana ❤</h1>
+  <p class="sub">Deine <b>komplett neue</b> Lernseite — neue Wörter, neue Fragen, neue Spiele. Deutsch <b>B2 bis C1</b>, mit Liebe gemacht: Pflege, Gefühle, Zuhause &amp; Telefon.</p>
+  <p class="sub" style="font-size:16px">🇬🇪 <b>ქართველი ქალებისთვის:</b> ისწავლე გერმანული ენა თამაშით — ახალი სიტყვები, გრამატიკა, მოსმენა და თამაშები (დონე B2–C1). ყოველი სწორი პასუხი = +10 XP!</p>
+  <span class="badge">✨ NEU · Alle Fragen sind neu · 12. November 2026</span>
+  <div class="lvlbar"><span class="muted"><b>Niveau wählen:</b></span>
+    <button class="lvlbtn" data-lvl="Alle">Alle</button>
+    <button class="lvlbtn" data-lvl="B2">B2</button>
+    <button class="lvlbtn" data-lvl="C1">C1</button>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="herocard big">
+      <h2>„Du lernst nicht nur Deutsch.<br>Du eroberst Herzen.“ 💋</h2>
+      <p class="muted">🇬🇪 დაიწყე დღესვე — ყოველი სწორი პასუხი = +10 XP!<br>Jede richtige Antwort: <b style="color:#fff">+10 XP</b> · Perfekte Runde: <b style="color:#fff">+25 Bonus</b>. Dein Fortschritt bleibt auf diesem Handy gespeichert — auch deine alten Punkte von der früheren Seite.</p>
+      <div><button onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">▶ Jetzt spielen</button>
+      <button class="ghost" onclick="replayIntro()">💗 Herz nochmal fliegen lassen</button></div>
+    </div>
+    <div class="herocard art">💖</div>
+  </div>
+
+  <div class="ringwrap">
+    <svg class="ring" width="92" height="92"><circle class="bgc" cx="46" cy="46" r="40" fill="none" stroke-width="9"/><circle class="fgc" id="ringFg" cx="46" cy="46" r="40" fill="none" stroke-width="9" stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round"/></svg>
+    <div><div style="font-size:20px;font-weight:800">Level <span id="level">1</span> · <span id="xp">0</span> XP</div>
+    <div class="muted" id="levelHint">Noch 100 XP bis zum nächsten Level</div></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b id="streak">0 🔥</b><span>Tage-Streak</span></div>
+    <div class="stat"><b id="accuracy">–</b><span>Trefferquote</span></div>
+    <div class="stat"><b id="answered">0</b><span>Antworten gesamt</span></div>
+    <div class="stat"><b id="wordcount">0</b><span>Neue Wörter</span></div>
+  </div>
+
+  <section>
+    <h2>📅 Tages-Quests</h2>
+    <div class="quest"><span>Beantworte 5 Quiz-Fragen</span><b id="q1">0 / 5</b></div>
+    <div class="quest"><span>Sammle heute 30 XP</span><b id="q2">0 / 30 XP</b></div>
+    <div class="quest" style="border-bottom:0"><span>Schau dir 4 Karteikarten an</span><b id="q3">0 / 4</b></div>
+  </section>
+
+  <section id="quiz">
+    <h2>💘 Wortschatz-Quiz — neu</h2>
+    <p class="muted">Georgisch → Deutsch. Wähle die richtige Antwort.</p>
+    <div id="quizBox"></div>
+  </section>
+
+  <section>
+    <h2>🎧 Hör-Quiz — neu</h2>
+    <p class="muted">Du hörst ein deutsches Wort — wähle die richtige georgische Bedeutung. Tippe auf 🔊, um es noch einmal zu hören.</p>
+    <div id="hoerBox"></div>
+  </section>
+
+  <section>
+    <h2>🎧 Hör-Prüfung (B2/C1) — neu: „Der Anruf“</h2>
+    <p class="muted">Wie in der echten Prüfung: Text mit ▶ anhören, dann jede Frage antippen. Transkript am Ende anzeigen.</p>
+    <div id="pruefBox"></div>
+  </section>
+
+  <section>
+    <h2>⚔️ Grammatik-Duell — neu</h2>
+    <p class="muted">Neue Themen: weil &amp; obwohl, höfliche Bitten, <i>sich freuen auf</i>, <i>zu</i> + Infinitiv, Komparativ und mehr.</p>
+    <div id="gramBox"></div>
+  </section>
+
+  <section>
+    <h2>🖼️ Bild-Karten — neu</h2>
+    <p class="muted">Tippe auf eine Karte — du hörst das Wort und siehst die Übersetzung.</p>
+    <div class="picgrid" id="picBox"></div>
+  </section>
+
+  <section>
+    <h2>🃏 Karteikarten (Deutsch ↔ ქართული)</h2>
+    <p class="muted">Tippe auf eine Karte, um die Übersetzung zu sehen. Mit 🔊 hörst du die Aussprache.</p>
+    <div class="cards" id="flipBox"></div>
+  </section>
+
+  <section>
+    <h2>🧩 Memory — neu</h2>
+    <p class="muted">Finde die Paare: deutsches Wort ↔ georgische Bedeutung.</p>
+    <div class="mem" id="memBox"></div>
+    <p class="feedback" id="memFb"></p>
+    <button class="ghost" onclick="buildMemory()">🔄 Neu mischen</button>
+  </section>
+
+  <section>
+    <h2>📈 Deine letzten 7 Tage</h2>
+    <div class="bars" id="bars"></div><div class="barlbl" id="barlbl"></div>
+  </section>
+
+  <section>
+    <h2>📚 Wortliste — alle neuen Wörter</h2>
+    <div style="overflow-x:auto"><table><thead><tr><th>Deutsch</th><th>🔊</th><th>ქართული</th><th>Beispiel</th><th>Niveau</th></tr></thead><tbody id="wordTable"></tbody></table></div>
+  </section>
+
+  <footer>Mit ❤ gemacht für Ana · Deutsch mit Herz · Neue Fragen: 12. November 2026</footer>
+</main>
+<button id="replayHeart" title="Herz-Intro noch einmal" onclick="replayIntro()">💗</button>
+
+<script>
+"use strict";
+/* ===== KOMPLETT NEUE INHALTE — 12.11.2026 (keine Fragen von der alten Seite) ===== */
+const PACKS=[
+{ id:"ana-pflege-herz", date:"12. November 2026", level:"B2", title:"B2-Paket: Pflege mit Herz",
+  words:[
+   {de:"der Blutdruck",ka:"სისხლის წნევა",img:"🩺",ex:"Ich messe der Seniorin jeden Morgen den Blutdruck und schreibe den Wert auf."},
+   {de:"die Tablette",ka:"აბი",img:"💊",ex:"Die Tablette nimmt sie immer nach dem Frühstück mit einem Glas Wasser."},
+   {de:"der Rollstuhl",ka:"ეტლი",img:"🦽",ex:"Mit dem Rollstuhl fahren wir bei schönem Wetter in den Park."},
+   {de:"die Geduld",ka:"მოთმინება",img:"🌿",ex:"Für diese Arbeit braucht man viel Geduld und ein großes Herz."},
+   {de:"vorsichtig",ka:"ფრთხილად",img:"👐",ex:"Bitte seien Sie vorsichtig, der Boden ist nach dem Wischen noch nass."},
+   {de:"begleiten",ka:"თანხლება",img:"🤝",ex:"Ich begleite Frau Müller morgen zu ihrem Termin beim Arzt."},
+   {de:"aufmuntern",ka:"გამხნევება",img:"🌞",ex:"Mit einem Lächeln und einem netten Wort kann man jeden Menschen aufmuntern."},
+   {de:"die Decke",ka:"საბანი",img:"🛏️",ex:"Am Abend lege ich ihr eine warme Decke über die Beine."},
+   {de:"zuverlässig",ka:"საიმედო",img:"⭐",ex:"Die Familie sagt, Ana ist zuverlässig und immer pünktlich."},
+   {de:"sich wohlfühlen",ka:"თავი კარგად გრძნობა",img:"🏡",ex:"Bei Ana fühlt sich die Seniorin sicher und wohl."}
+  ]},
+{ id:"ana-gefuehle-liebe", date:"12. November 2026", level:"B2", title:"B2-Paket: Gefühle & Liebe",
+  words:[
+   {de:"vermissen",ka:"მენატრება",img:"💭",ex:"Wenn Ana in Georgien ist, vermisst Emilio sie sehr."},
+   {de:"dankbar",ka:"მადლიერი",img:"🙏",ex:"Ich bin dir von Herzen dankbar für alles, was du für mich tust."},
+   {de:"stolz",ka:"ამაყი",img:"🦁",ex:"Sie ist stolz, weil sie die deutsche Prüfung so gut geschafft hat."},
+   {de:"das Lächeln",ka:"ღიმილი",img:"😊",ex:"Dein Lächeln macht meinen ganzen Tag schöner."},
+   {de:"umarmen",ka:"ჩახუტება",img:"🤗",ex:"Zur Begrüßung umarmen sie sich herzlich."},
+   {de:"vertrauen",ka:"ნდობა",img:"💞",ex:"Vertrauen ist die Basis für eine gute Beziehung und gute Pflege."},
+   {de:"der Kuss",ka:"კოცნა",img:"💋",ex:"Zum Abschied gibt er ihr einen Kuss auf die Wange."},
+   {de:"bezaubernd",ka:"მომხიბვლელი",img:"✨",ex:"Sie sieht heute Abend einfach bezaubernd aus."},
+   {de:"die Sehnsucht",ka:"ძლიერი მონატრება",img:"🌙",ex:"Nachts hat sie große Sehnsucht nach ihrer Familie in Georgien."},
+   {de:"hinreißend",ka:"მომაჯადოებელი",img:"🔥",ex:"Mit diesem Kleid siehst du hinreißend aus."}
+  ]},
+{ id:"ana-zuhause-kueche", date:"12. November 2026", level:"B2", title:"B2-Paket: Zuhause & Küche",
+  words:[
+   {de:"die Zutat",ka:"ინგრედიენტი",img:"🥕",ex:"Für die Suppe fehlen noch zwei Zutaten: Karotten und Sellerie."},
+   {de:"würzen",ka:"შეკმაზვა",img:"🧂",ex:"Bitte würze die Suppe nicht zu scharf, die Seniorin mag es mild."},
+   {de:"köcheln",ka:"ნელ ცეცხლზე ხარშვა",img:"🍲",ex:"Die Soße muss noch zwanzig Minuten leise köcheln."},
+   {de:"der Löffel",ka:"კოვზი",img:"🥄",ex:"Sie isst die Suppe langsam mit einem kleinen Löffel."},
+   {de:"aufräumen",ka:"დალაგება",img:"🧹",ex:"Nach dem Essen räumen wir zusammen die Küche auf."},
+   {de:"die Wäsche",ka:"სარეცხი",img:"👕",ex:"Die Wäsche hängt schon auf der Leine und trocknet in der Sonne."},
+   {de:"gemütlich",ka:"მყუდრო",img:"🛋️",ex:"Am Abend ist es im Wohnzimmer warm und gemütlich."},
+   {de:"der Duft",ka:"სურნელი",img:"🌹",ex:"Der Duft von frischem Kaffee zieht durch die ganze Wohnung."},
+   {de:"probieren",ka:"გასინჯვა",img:"👩‍🍳",ex:"Probier mal! Die Suppe ist heute besonders lecker."},
+   {de:"das Rezept",ka:"რეცეპტი",img:"📖",ex:"Dieses Rezept hat sie von ihrer Großmutter aus Georgien."}
+  ]},
+{ id:"ana-telefon-familie", date:"12. November 2026", level:"C1", title:"C1-Paket: Telefon & Familie",
+  words:[
+   {de:"der Anruf",ka:"ზარი",img:"📞",ex:"Der Anruf der Tochter kommt jeden Sonntag um zehn Uhr."},
+   {de:"zurückrufen",ka:"გადმორეკვა",img:"📲",ex:"Ich habe die Familie nicht erreicht, aber sie ruft mich heute noch zurück."},
+   {de:"vereinbaren",ka:"შეთანხმება",img:"📅",ex:"Wir vereinbaren am Telefon einen Termin für das erste Kennenlernen."},
+   {de:"Bescheid sagen",ka:"აცნობო",img:"📢",ex:"Bitte sagen Sie mir Bescheid, wenn etwas fehlt oder nicht stimmt."},
+   {de:"die Absprache",ka:"შეთანხმებული პირობა",img:"📝",ex:"Nach unserer Absprache komme ich jeden Morgen um acht Uhr."},
+   {de:"sich erkundigen",ka:"გამოკითხვა",img:"❓",ex:"Die Tochter erkundigt sich jeden Tag, wie es ihrer Mutter geht."},
+   {de:"erreichbar",ka:"კავშირზე ყოფნა",img:"📶",ex:"In der Nacht bin ich für Notfälle immer telefonisch erreichbar."},
+   {de:"die Angehörigen",ka:"ახლობლები",img:"👨‍👩‍👧",ex:"Die Angehörigen freuen sich sehr über die liebevolle Betreuung."},
+   {de:"der Termin",ka:"ვიზიტი, შეხვედრის დრო",img:"🗓️",ex:"Der nächste Termin beim Hausarzt ist am Donnerstag um elf Uhr."},
+   {de:"absagen",ka:"გაუქმება",img:"🚫",ex:"Den Termin mussten wir absagen, weil die Seniorin krank war."}
+  ]}
+];
+const GRAMMAR=[
+ {q:"Ich bleibe heute länger bei der Seniorin, ___ sie nicht allein ist.",opts:["weil","obwohl","trotzdem"],a:0,why:"„weil“ nennt den Grund."},
+ {q:"___ sie sehr müde ist, lächelt sie immer noch freundlich.",opts:["Weil","Obwohl","Deshalb"],a:1,why:"„obwohl“ = es ist so, aber trotzdem anders als erwartet."},
+ {q:"Höflich beim Arzt: „___ Sie mir bitte helfen?“",opts:["Kannst","Könnten","Willst"],a:1,why:"„Könnten Sie …?“ ist die höfliche Form (Konjunktiv II)."},
+ {q:"Ana freut sich ___ das Telefonat mit der Familie morgen.",opts:["über","auf","an"],a:1,why:"Etwas Zukünftiges: sich freuen AUF + Akkusativ."},
+ {q:"Ana freut sich ___ das schöne Geschenk von gestern.",opts:["auf","über","von"],a:1,why:"Etwas, das schon da ist: sich freuen ÜBER + Akkusativ."},
+ {q:"Es ist wichtig, die Tabletten pünktlich ___.",opts:["geben","zu geben","gibt"],a:1,why:"Nach „Es ist wichtig“ kommt „zu + Infinitiv“."},
+ {q:"Heute geht es der Seniorin viel ___ als gestern.",opts:["gut","besser","am besten"],a:1,why:"Vergleich mit „als“ → Komparativ: besser."},
+ {q:"Nach dem langen Spaziergang muss sie sich unbedingt ___.",opts:["ausruhen","ausruhst","ruhen aus sich"],a:0,why:"Reflexiv + Infinitiv: sich ausruhen."},
+ {q:"Das ist der Anruf, ___ ich den ganzen Tag gewartet habe.",opts:["auf den","über den","an dem"],a:0,why:"warten AUF + Akkusativ → auf den."},
+ {q:"Sie spricht leise, ___ die Seniorin nicht aufwacht.",opts:["damit","weil","obwohl"],a:0,why:"„damit“ nennt die Absicht: zu diesem Zweck."},
+ {q:"Können Sie mir sagen, wann der Arzt ___?",opts:["kommt morgen","morgen kommt","kommt er morgen"],a:1,why:"In der indirekten Frage steht das Verb am Ende."},
+ {q:"Je mehr Geduld man hat, ___ leichter wird diese Arbeit.",opts:["umso","als","wie"],a:0,why:"„Je …, umso/desto …“ vergleicht zwei Entwicklungen."}
+];
+const HOERPRUEFUNG=[
+ {title:"Übung 1: Der Anruf der Tochter",
+  text:"Guten Tag, hier spricht Frau Schneider. Ich rufe an, weil meine Mutter morgen einen Termin beim Hausarzt hat. Der Termin ist um elf Uhr. Ana, könnten Sie meine Mutter bitte begleiten? Sie soll eine warme Jacke und ihre Versichertenkarte mitnehmen. Nach dem Termin rufen Sie mich bitte an und sagen mir Bescheid, wie es war. Vielen Dank für Ihre liebevolle Hilfe!",
+  qs:[
+   {q:"Warum ruft Frau Schneider an?",opts:["Wegen eines Arzttermins ihrer Mutter","Weil sie eine neue Betreuerin sucht","Wegen eines Geburtstags"],a:0},
+   {q:"Um wie viel Uhr ist der Termin?",opts:["Um zehn Uhr","Um elf Uhr","Um zwölf Uhr"],a:1},
+   {q:"Was soll die Mutter mitnehmen?",opts:["Nur ihren Regenschirm","Eine warme Jacke und die Versichertenkarte","Ein neues Rezeptbuch"],a:1},
+   {q:"Was soll Ana nach dem Termin tun?",opts:["Die Tochter anrufen und Bescheid sagen","Sofort nach Hause fahren","Einen neuen Termin absagen"],a:0}
+  ]},
+ {title:"Übung 2: Am Abend",
+  text:"Am Abend sitzt Frau Müller gemütlich im Wohnzimmer. Ana bringt ihr eine warme Decke und eine Tasse Tee. Sie erzählt von ihrer Familie in Georgien, und Frau Müller lächelt. Sie sagt: Ana, bei dir fühle ich mich wohl. Du hast so viel Geduld mit mir. Dafür bin ich dir sehr dankbar.",
+  qs:[
+   {q:"Wo sitzt Frau Müller am Abend?",opts:["In der Küche","Im Wohnzimmer","Im Garten"],a:1},
+   {q:"Was bringt Ana ihr?",opts:["Eine Decke und eine Tasse Tee","Eine Tablette und Wasser","Ein Buch und eine Brille"],a:0},
+   {q:"Wie fühlt sich Frau Müller bei Ana?",opts:["Unsicher","Wohl und dankbar","Langweilig"],a:1}
+  ]}
+];
+const ALLWORDS=PACKS.flatMap(p=>p.words.map(w=>({...w,level:p.level,pack:p.title})));
+let CURLEVEL="Alle";
+function wordsForLevel(){return CURLEVEL==="Alle"?ALLWORDS:ALLWORDS.filter(w=>w.level===CURLEVEL)}
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function speak(t){try{const u=new SpeechSynthesisUtterance(t);u.lang="de-DE";u.rate=.92;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+</script>
+
+<script>
+"use strict";
+/* ===== Fortschritt — gleicher Schlüssel wie früher, Punkte bleiben erhalten ===== */
+const KEY="b2-spiel-dashboard-v1";
+let S; try{S=JSON.parse(localStorage.getItem(KEY))||null}catch(e){S=null}
+if(!S||typeof S!=="object") S={xp:0,correct:0,answered:0,days:{},lastDay:"",streak:0,flips:0,todayAnswers:0,todayXP:0,todayFlips:0,today:"",level:"Alle"};
+CURLEVEL=["Alle","B2","C1"].includes(S.level)?S.level:"Alle";
+function todayKey(d){d=d||new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function rollDay(){const t=todayKey();if(S.today!==t){S.today=t;S.todayAnswers=0;S.todayXP=0;S.todayFlips=0}}
+rollDay();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function gain(xp,wasCorrect){rollDay();S.xp+=xp;S.answered++;if(wasCorrect)S.correct++;S.todayAnswers++;S.todayXP+=xp;const t=todayKey();S.days[t]=(S.days[t]||0)+xp;
+ if(S.lastDay!==t){const y=new Date();y.setDate(y.getDate()-1);S.streak=(S.lastDay===todayKey(y))?S.streak+1:1;S.lastDay=t} save();renderStats()}
+function renderStats(){const lvl=Math.floor(S.xp/100)+1;const into=S.xp%100;
+ document.getElementById("level").textContent=lvl;
+ document.getElementById("xp").textContent=S.xp;
+ document.getElementById("levelHint").textContent="Noch "+(100-into)+" XP bis Level "+(lvl+1);
+ document.getElementById("ringFg").style.strokeDashoffset=(251.2*(1-into/100)).toFixed(1);
+ document.getElementById("streak").textContent=S.streak+" 🔥";
+ document.getElementById("accuracy").textContent=S.answered?Math.round(S.correct/S.answered*100)+"%":"–";
+ document.getElementById("answered").textContent=S.answered;
+ document.getElementById("wordcount").textContent=wordsForLevel().length;
+ document.getElementById("q1").textContent=Math.min(S.todayAnswers,5)+" / 5";
+ document.getElementById("q2").textContent=Math.min(S.todayXP,30)+" / 30 XP";
+ document.getElementById("q3").textContent=Math.min(S.todayFlips,4)+" / 4";
+ renderBars();
+ document.querySelectorAll(".lvlbtn").forEach(b=>b.classList.toggle("active",b.dataset.lvl===CURLEVEL));
+}
+function renderBars(){const bars=document.getElementById("bars"),lbl=document.getElementById("barlbl");bars.innerHTML="";lbl.innerHTML="";
+ const names=["So","Mo","Di","Mi","Do","Fr","Sa"];let max=10;
+ const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const v=S.days[todayKey(d)]||0;days.push({n:names[d.getDay()],v});if(v>max)max=v}
+ days.forEach(d=>{const b=document.createElement("div");b.className="bar";b.style.height=Math.max(6,Math.round(d.v/max*100))+"px";b.innerHTML="<i>"+(d.v||"")+"</i>";bars.appendChild(b);const s=document.createElement("span");s.textContent=d.n;lbl.appendChild(s)})}
+/* ===== Quiz generisch ===== */
+function makeQuiz(boxId,items,renderQ){
+ let idx=0,score=0,streakPerfect=true;
+ const box=document.getElementById(boxId);
+ function show(){box.innerHTML="";if(idx>=items.length){box.innerHTML='<p class="qbig">Runde geschafft! 🎉</p><p class="feedback '+(score===items.length?'ok':'')+'">'+score+" von "+items.length+" richtig."+(score===items.length?" Perfekte Runde! +25 Bonus-XP 💖":"")+'</p>';if(score===items.length){S.xp+=25;S.todayXP+=25;save()}renderStats();const rb=document.createElement("button");rb.textContent="🔄 Noch einmal";rb.onclick=()=>{idx=0;score=0;show()};box.appendChild(rb);return}
+  const it=items[idx];const head=document.createElement("p");head.className="muted";head.textContent="Frage "+(idx+1)+" von "+items.length+" · Treffer: "+score;box.appendChild(head);
+  renderQ(box,it,(chosen,correctBtn)=>{const fb=document.createElement("p");fb.className="feedback";
+   if(chosen===it.a){score++;gain(10,true);fb.className+=" ok";fb.textContent="✅ Richtig! +10 XP 💖"}
+   else{gain(0,false);fb.className+=" bad";fb.textContent="❌ Nicht ganz — richtig ist die markierte Antwort."}
+   box.querySelectorAll(".opt").forEach((b,i)=>{b.disabled=true;if(i===it.a)b.classList.add("correct");else if(i===chosen)b.classList.add("wrong")});
+   box.appendChild(fb);const nb=document.createElement("button");nb.textContent=idx+1>=items.length?"Ergebnis zeigen 🏁":"Weiter ➜";nb.onclick=()=>{idx++;show()};box.appendChild(nb)})}
+ show();
+}
+function optBtn(txt,i,cb){const b=document.createElement("button");b.className="opt";b.textContent=txt;b.onclick=()=>cb(i);return b}
+/* Wortschatz-Quiz: Georgisch → Deutsch */
+function buildVocabQuiz(){const ws=shuffle(wordsForLevel()).slice(0,10);
+ const items=ws.map(w=>{const others=shuffle(ALLWORDS.filter(x=>x.de!==w.de)).slice(0,2);const opts=shuffle([w.de,...others.map(o=>o.de)]);return {w,a:opts.indexOf(w.de),opts}});
+ makeQuiz("quizBox",items,(box,it,done)=>{const q=document.createElement("p");q.className="qbig";q.innerHTML="🇬🇪 "+it.w.ka+" <button class='spk' onclick='speak(\""+it.w.de.replace(/"/g,"")+"\")'>🔊 Deutsch hören</button>";box.appendChild(q);
+  const ex=document.createElement("p");ex.className="muted";ex.textContent="Beispiel: "+it.w.ex;box.appendChild(ex);
+  it.opts.forEach((o,i)=>box.appendChild(optBtn(o,i,c=>done(c))))})}
+/* Hör-Quiz: Deutsch hören → Georgisch wählen */
+function buildHoerQuiz(){const ws=shuffle(wordsForLevel()).slice(0,10);
+ const items=ws.map(w=>{const others=shuffle(ALLWORDS.filter(x=>x.ka!==w.ka)).slice(0,2);const opts=shuffle([w.ka,...others.map(o=>o.ka)]);return {w,a:opts.indexOf(w.ka),opts}});
+ makeQuiz("hoerBox",items,(box,it,done)=>{const q=document.createElement("p");q.className="qbig";q.innerHTML="🎧 <button onclick='speak(\""+it.w.de.replace(/"/g,"")+"\")'>🔊 Wort anhören</button>";box.appendChild(q);speak(it.w.de);
+  it.opts.forEach((o,i)=>box.appendChild(optBtn(o,i,c=>done(c))))})}
+/* Grammatik */
+function buildGrammar(){const items=shuffle(GRAMMAR).slice(0,10).map(g=>{const pairs=shuffle(g.opts.map((o,i)=>({o,ok:i===g.a})));return {g,opts:pairs.map(p=>p.o),a:pairs.findIndex(p=>p.ok)}});
+ makeQuiz("gramBox",items,(box,it,done)=>{const q=document.createElement("p");q.className="qbig";q.textContent=it.g.q;box.appendChild(q);
+  it.opts.forEach((o,i)=>box.appendChild(optBtn(o,i,c=>{done(c);const w=document.createElement("p");w.className="muted";w.textContent="💡 "+it.g.why;box.appendChild(w)})))})}
+/* Hör-Prüfung */
+function buildPruefung(){const box=document.getElementById("pruefBox");box.innerHTML="";
+ HOERPRUEFUNG.forEach(ex=>{const h=document.createElement("h3");h.textContent=ex.title;box.appendChild(h);
+  const play=document.createElement("button");play.textContent="▶ Text anhören";play.onclick=()=>speak(ex.text);box.appendChild(play);
+  ex.qs.forEach((qq,qi)=>{const wrap=document.createElement("div");const q=document.createElement("p");q.style.fontWeight="700";q.textContent=(qi+1)+". "+qq.q;wrap.appendChild(q);
+   qq.opts.forEach((o,i)=>{const b=optBtn(o,i,()=>{wrap.querySelectorAll(".opt").forEach((x,j)=>{x.disabled=true;if(j===qq.a)x.classList.add("correct");else if(j===i)x.classList.add("wrong")});
+    if(i===qq.a){gain(10,true);f.textContent="✅ Richtig! +10 XP"}else{gain(0,false);f.textContent="❌ Richtig wäre: "+qq.opts[qq.a]};wrap.appendChild(f)});wrap.appendChild(b)});
+   const f=document.createElement("p");f.className="feedback";box.appendChild(wrap);wrap.appendChild(f)});
+  const t=document.createElement("button");t.className="ghost";t.textContent="📄 Transkript zeigen";const tp=document.createElement("p");tp.className="muted";tp.style.display="none";tp.textContent=ex.text;
+  t.onclick=()=>{tp.style.display=tp.style.display==="none"?"block":"none"};box.appendChild(t);box.appendChild(tp)})}
+/* Bild-Karten, Karteikarten, Wortliste */
+function buildPics(){const box=document.getElementById("picBox");box.innerHTML="";shuffle(wordsForLevel()).slice(0,12).forEach(w=>{const d=document.createElement("div");d.className="piccard";d.innerHTML="<span class='big'>"+w.img+"</span><span class='wd'>"+w.de+"</span><span class='ka2'></span>";d.onclick=()=>{d.querySelector(".ka2").textContent=w.ka;speak(w.de)};box.appendChild(d)})}
+function buildFlips(){const box=document.getElementById("flipBox");box.innerHTML="";wordsForLevel().forEach(w=>{const d=document.createElement("div");d.className="flip";d.innerHTML="<span>"+w.de+"</span><button class='spk'>🔊</button>";let open=false;
+ d.querySelector(".spk").onclick=e=>{e.stopPropagation();speak(w.de)};
+ d.onclick=()=>{open=!open;if(open){rollDay();S.flips++;S.todayFlips++;save();renderStats()}d.classList.toggle("ka",open);d.querySelector("span").textContent=open?w.ka+" · "+w.de:w.de};box.appendChild(d)})}
+function buildTable(){const tb=document.getElementById("wordTable");tb.innerHTML="";PACKS.forEach(p=>{const tr=document.createElement("tr");tr.innerHTML="<td colspan='5'><span class='lvltag'>"+p.level+"</span> <b>"+p.title+"</b> <span class='muted'>· "+p.date+"</span></td>";tb.appendChild(tr);
+ p.words.forEach(w=>{const r=document.createElement("tr");r.innerHTML="<td><b>"+w.de+"</b></td><td><button class='spk'>🔊</button></td><td>"+w.ka+"</td><td class='muted'>"+w.ex+"</td><td>"+p.level+"</td>";r.querySelector(".spk").onclick=()=>speak(w.de);tb.appendChild(r)})})}
+/* Memory */
+let memOpen=[],memLock=false;
+function buildMemory(){const box=document.getElementById("memBox");box.innerHTML="";document.getElementById("memFb").textContent="";memOpen=[];memLock=false;
+ const ws=shuffle(wordsForLevel()).slice(0,8);const cards=shuffle(ws.flatMap(w=>[{v:w.de,id:w.de},{v:w.ka,id:w.de}]));
+ cards.forEach(c=>{const d=document.createElement("div");d.className="memcard";d.textContent="💗";d.dataset.id=c.id;d.dataset.v=c.v;
+  d.onclick=function(){
+   if(memLock||d.classList.contains("open")||d.classList.contains("done"))return;
+   d.classList.add("open");d.textContent=c.v;memOpen.push(d);
+   if(memOpen.length===2){memLock=true;const a=memOpen[0],b=memOpen[1];
+    if(a.dataset.id===b.dataset.id){
+     a.classList.add("done");b.classList.add("done");gain(10,true);
+     document.getElementById("memFb").textContent="💖 Paar gefunden: "+a.dataset.v+" = "+b.dataset.v;
+     memOpen=[];memLock=false;
+    }else{
+     setTimeout(()=>{a.classList.remove("open");b.classList.remove("open");a.textContent="💗";b.textContent="💗";memOpen=[];memLock=false;},900);
+    }
+   }
+  };
+  box.appendChild(d);});}
+function rebuildAll(){buildVocabQuiz();buildHoerQuiz();buildGrammar();buildPruefung();buildPics();buildFlips();buildTable();buildMemory();renderStats()}
+document.querySelectorAll(".lvlbtn").forEach(b=>b.onclick=()=>{CURLEVEL=b.dataset.lvl;S.level=CURLEVEL;save();rebuildAll()});
+rebuildAll();
+</script>
+
+<script>
+/* ===== 3D-HERZ-INTRO: Das Herz fliegt auf Ana zu ===== */
+let introDone=false, heartAnim=null;
+function endIntro(){if(introDone)return;introDone=true;
+ const intro=document.getElementById("intro");
+ /* Herz-Explosion: kleine Herzen fliegen hoch */
+ for(let i=0;i<28;i++){const s=document.createElement("span");s.className="flyheart";s.textContent=["❤","💖","💋","✨","💗"][i%5];
+  s.style.left=(8+Math.random()*84)+"vw";s.style.top=(45+Math.random()*35)+"vh";s.style.fontSize=(16+Math.random()*30)+"px";s.style.animationDelay=(Math.random()*.5)+"s";document.body.appendChild(s);setTimeout(()=>s.remove(),3400)}
+ intro.classList.add("gone");if(heartAnim)cancelAnimationFrame(heartAnim);
+ setTimeout(()=>{intro.style.display="none"},900);
+ try{speak("Für dich, Ana!")}catch(e){}}
+function startHeart(){
+ const canvas=document.getElementById("heart3d");
+ if(typeof THREE==="undefined"||!window.WebGLRenderingContext){document.getElementById("cssheart").style.display="block";setTimeout(endIntro,3400);return}
+ try{
+  const renderer=new THREE.WebGLRenderer({canvas:canvas,alpha:true,antialias:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,.1,300);camera.position.z=70;
+  function resize(){renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()}resize();addEventListener("resize",resize);
+  /* Herz-Form */
+  const x=0,y=0;const shape=new THREE.Shape();
+  shape.moveTo(x+5,y+5);shape.bezierCurveTo(x+5,y+5,x+4,y,x,y);
+  shape.bezierCurveTo(x-6,y,x-6,y+7,x-6,y+7);shape.bezierCurveTo(x-6,y+11,x-2,y+15.4,x+5,y+19);
+  shape.bezierCurveTo(x+12,y+15.4,x+16,y+11,x+16,y+7);shape.bezierCurveTo(x+16,y+7,x+16,y,x+10,y);
+  shape.bezierCurveTo(x+7,y,x+5,y+5,x+5,y+5);
+  const geo=new THREE.ExtrudeGeometry(shape,{depth:4,bevelEnabled:true,bevelSegments:6,bevelSteps:3,bevelSize:1.6,bevelThickness:1.6,curveSegments:24});
+  geo.center();
+  /* Georgische Flagge auf eine Leinwand zeichnen (weiss, grosses rotes Kreuz + 4 kleine Kreuze) */
+  const fc=document.createElement("canvas");fc.width=512;fc.height=448;const fx=fc.getContext("2d");
+  fx.fillStyle="#ffffff";fx.fillRect(0,0,512,448);fx.fillStyle="#d90429";
+  fx.fillRect(226,0,60,448);fx.fillRect(0,194,512,60);
+  [[128,97],[384,97],[128,351],[384,351]].forEach(function(c){fx.fillRect(c[0]-11,c[1]-30,22,60);fx.fillRect(c[0]-30,c[1]-11,60,22)});
+  const flagTex=new THREE.CanvasTexture(fc);flagTex.repeat.set(1/22,1/19);flagTex.offset.set(6/22,0);
+  const mat=new THREE.MeshPhysicalMaterial({map:flagTex,color:0xffffff,roughness:.22,metalness:.05,clearcoat:1,clearcoatRoughness:.2,emissive:0x33000a});
+  const heart=new THREE.Mesh(geo,mat);heart.rotation.z=Math.PI;heart.position.z=-160;heart.scale.setScalar(.4);scene.add(heart);
+  scene.add(new THREE.AmbientLight(0xffffff,.55));
+  const l1=new THREE.PointLight(0xff8fab,900,0,1.6);l1.position.set(25,25,40);scene.add(l1);
+  const l2=new THREE.PointLight(0xffc65c,600,0,1.6);l2.position.set(-25,-10,30);scene.add(l2);
+  const l3=new THREE.PointLight(0xffffff,500,0,1.6);l3.position.set(0,0,60);scene.add(l3);
+  /* Glitzer-Partikel */
+  const pn=260,pp=new Float32Array(pn*3);for(let i=0;i<pn*3;i++)pp[i]=(Math.random()-.5)*130;
+  const pg=new THREE.BufferGeometry();pg.setAttribute("position",new THREE.BufferAttribute(pp,3));
+  const stars=new THREE.Points(pg,new THREE.PointsMaterial({color:0xffc2d4,size:1.15,transparent:true,opacity:.9}));scene.add(stars);
+  const t0=performance.now();
+  function tick(now){heartAnim=requestAnimationFrame(tick);const t=(now-t0)/1000;
+   const fly=Math.min(t/3.4,1);const ease=1-Math.pow(1-fly,3);
+   heart.position.z=-160+ease*155;                       /* fliegt auf dich zu */
+   const base=.4+ease*2.5;const pulse=1+Math.sin(t*7)*.07;
+   heart.scale.setScalar(base*pulse);
+   heart.rotation.y=Math.sin(t*1.4)*.45;heart.rotation.x=Math.sin(t*1.1)*.15;
+   heart.position.y=Math.sin(t*2)*1.6;
+   stars.rotation.y=t*.03;
+   renderer.render(scene,camera);
+   if(fly>=1&&!introDone){setTimeout(endIntro,450)}}
+  heartAnim=requestAnimationFrame(tick);
+  setTimeout(endIntro,5200); /* Sicherheits-Ende */
+ }catch(e){document.getElementById("cssheart").style.display="block";setTimeout(endIntro,3400)}
+}
+function replayIntro(){const intro=document.getElementById("intro");introDone=false;intro.style.display="flex";intro.classList.remove("gone");startHeart();scrollTo({top:0,behavior:"smooth"})}
+document.getElementById("skipBtn").addEventListener("click",endIntro);
+document.getElementById("intro").addEventListener("click",function(e){if(e.target.id==="intro"||e.target.id==="heart3d")endIntro()});
+startHeart();
+</script>
+</body>
+</html>
